@@ -1,5 +1,5 @@
 import styles from "./page.module.css"
-import Image from "next/image";
+import ThumbPhotographer from "../components/ThumbPhotographer/ThumbPhotographer";
 import { getAllPhotographers } from "./lib/prisma-db"
 
 
@@ -7,20 +7,18 @@ export default async function Home() {
     const photographers = await getAllPhotographers();
 
     return(
-        <section>
-            <ul>
+        <section className={styles.photographersSection}>
+            <ul className={styles.photographersGrid}>
                 {photographers.map((photographer) => (
-                    <li key={photographer.id}>
-                        <Image 
-                            src={`/${photographer.portrait}`}
-                            alt={`Portrait du photographe ${photographer.name}`}
-                            width={300}
-                            height={300}
-                            />
-                        <h2>{photographer.name}</h2>
-                        <p>{photographer.city}, {photographer.country}</p>
-                        <p>{photographer.tagline}</p>
-                    </li>
+                    <ThumbPhotographer 
+                        key={photographer.id}
+                        portrait={photographer.portrait}
+                        name={photographer.name}
+                        city={photographer.city}
+                        country={photographer.country}
+                        tagline={photographer.tagline}
+                        price={photographer.price}
+                    />
                 ))}
             </ul>
         </section>

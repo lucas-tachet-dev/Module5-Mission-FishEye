@@ -1,0 +1,21 @@
+.photographersSection {
+    padding: 0px 100px;
+}
+
+.photographersGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 80px 40px;
+}
+
+.photographersGrid > *:nth-child(3n + 1) {
+  justify-self: start;
+}
+
+.photographersGrid > *:nth-child(3n + 2) {
+  justify-self: center;
+}
+
+.photographersGrid > *:nth-child(3n) {
+  justify-self: end;
+}
