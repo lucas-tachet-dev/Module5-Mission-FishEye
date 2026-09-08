@@ -12,6 +12,7 @@ export default async function Home() {
                 {photographers.map((photographer) => (
                     <ThumbPhotographer 
                         key={photographer.id}
+                        id={photographer.id}
                         portrait={photographer.portrait}
                         name={photographer.name}
                         city={photographer.city}
