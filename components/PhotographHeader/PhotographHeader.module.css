@@ -49,4 +49,15 @@
     font-size: 20px;
     border: 0px solid;
     border-radius: 8px;
+
+    &:hover{
+        cursor: pointer;
+        color: black;
+        background-color: #DB8876;
+    }
+
+    &:focus {
+        color: black;
+        background-color: #DB8876;
+    }
 }
