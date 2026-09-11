@@ -70,34 +70,37 @@
 .form input {
     padding: 10px;
     font-size: 24px;
+    border: 0px;
+    border-radius: 8px;
 }
 
 .form textarea {
     padding: 10px;
     font-size: 24px;
+    border-radius: 8px;
 }
 
 .form button {
     margin-top: 26px;
-    padding: 24px 12px;
+    margin-right: auto;
+    padding: 24px 48px;
     background-color: #901C1C;
     color: white;
     font-family: var(--font-dm-sans);
     font-weight: 700;
     font-size: 20px;
-    border: 2px solid #901C1C;
+    border: 0px;
     border-radius: 8px;
+    justify-self: start;
     
     &:hover{
         cursor: pointer;
-        color: black;
-        background-color: #DB8876;
-        border: 2px solid #901C1C;
+        color: #D3573C;
+        background-color: #FFFFFF;
     }
 
     &:focus{
-        color: black;
-        background-color: #DB8876;
-        border: 2px solid #901C1C;
+        color: #D3573C;
+        background-color: #FFFFFF;
     }
 }
