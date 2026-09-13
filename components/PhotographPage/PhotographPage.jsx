@@ -40,7 +40,7 @@ export default function PhotographPage({ photographer, photographerAllMedia }) {
                             <PhotographMedia
                                 key={media.id}
                                 title={media.title}
-                                image={media.image}
+                                media={media}
                                 likes={media.likes}
                             />
                         ))}
