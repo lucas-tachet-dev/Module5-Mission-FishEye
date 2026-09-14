@@ -1,10 +1,29 @@
+"use client"
+
 import Image from "next/image"
 import styles from "./ContactModal.module.css"
+import { useEffect } from "react"
 
 export default function ContactModal({ name, isOpen, onClose }) {
     const handleSubmit = (e) => {
         e.preventDefault();
     }
+    
+    // Accessibilité fermer la modale avec esc
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const keyDown = (e) => {
+            if(e.key === "Escape")
+                onClose();
+        }
+        
+        window.addEventListener("keydown", keyDown);
+
+        return () => {
+            window.removeEventListener("keydown", keyDown);
+        }
+    }, [onClose])
     
     if(!isOpen)
         return null
