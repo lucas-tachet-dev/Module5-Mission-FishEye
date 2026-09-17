@@ -1,6 +1,6 @@
 import styles from "./page.module.css"
 import ThumbPhotographer from "../components/ThumbPhotographer/ThumbPhotographer";
-import { getAllPhotographers } from "./lib/prisma-db"
+import { getAllPhotographers } from "../lib/prisma-db";
 
 
 export default async function Home() {

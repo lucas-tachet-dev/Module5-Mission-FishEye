@@ -1,4 +1,4 @@
-import { getPhotographer, getAllPhotographers ,getAllMediasForPhotographer } from "../../lib/prisma-db";
+import { getPhotographer, getAllPhotographers ,getAllMediasForPhotographer } from "../../../lib/prisma-db";
 import PhotographPage from "../../../components/PhotographPage/PhotographPage";
 
 export default async function PhotographerPage({ params }) {
@@ -32,9 +32,9 @@ export async function generateMetadata({ params }) {
     }
 }
 
-export async function generateStaticParams(){
-    const allPhotographers = await getAllPhotographers();
-    return allPhotographers.map((photographer) => ({
-        id: photographer.id
-    }))
-}
+// export async function generateStaticParams(){
+//     const allPhotographers = await getAllPhotographers();
+//     return allPhotographers.map((photographer) => ({
+//         id: photographer.id
+//     }))
+// }

@@ -1,14 +1,14 @@
 import styles from "./PhotographMedia.module.css"
 import Image from "next/image"
 
-export default function PhotographMedia({ title, media, likes, onClick }) {
+export default function PhotographMedia({ name, title, media, likes, onClick }) {
 
     return(
         <li className={styles.mediaCard} onClick={onClick}>
             {media.image ? (
                 <Image 
                     src={`/${media.image}`}
-                    alt={title}
+                    alt={`${title} de ${name}`}
                     height={400}
                     width={400}
                     loading="eager"
