@@ -3,16 +3,23 @@
 import { useState, useEffect } from "react"
 import styles from "./PhotographPage.module.css"
 import PhotographHeader from "../PhotographHeader/PhotographHeader"
+import SortingOptions from "../SortingOptions/SortingOptions"
 import PhotographMedia from "../PhotographMedia/PhotographMedia"
 import ContactModal from "../ContactModal/ContactModal"
+import LightBoxModal from "../LightBoxModal/LightBoxModal"
 
 export default function PhotographPage({ photographer, photographerAllMedia }) {
+        // Gestion d'ouverture/fermeture de la modale de contact
         const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
+        // Gestion d'ouverture/fermeture de la modale Lightbox
+        const [isLightboxModalOpen, setIsLightboxModalOpen] = useState(false);
+
+        // Gestion du défillement du body
         useEffect(() => {
             let body = document.body;
 
-            if(isContactModalOpen) {
+            if(isContactModalOpen || isLightboxModalOpen) {
                 body.style.overflow = "hidden";
             } else {
                 body.style.overflow = "unset";
@@ -21,11 +28,39 @@ export default function PhotographPage({ photographer, photographerAllMedia }) {
             return () => {
                 body.style.overflow = "unset";
             };
-        }, [isContactModalOpen]);
+        }, [isContactModalOpen, isLightboxModalOpen]);
+
+        // Gestion de l'index
+        const [indexMedia, setIndexMedia] = useState(0);
+
+        // Gestion de l'option de tri
+        const [sortBy, setSortBy] = useState("");
+
+        // fonctions de tri
+        const sortByParameter = (a , b, p) => {
+                return a[p] - b[p];
+        }
+
+        const sortByText = (a, b, p) => {
+            return a[p].localeCompare(b[p]);
+        }
+
+        // Tri des medias
+        const sortedMedias = sortBy ? photographerAllMedia.toSorted((a, b) => {
+            if(sortBy === "likes") {
+                return sortByParameter(b, a, "likes")
+            }
+            if(sortBy === "date") {
+                return sortByText(a, b, "date")
+            }
+            if(sortBy === "title") {
+                return sortByText(a, b, "title")
+            }
+        }) : photographerAllMedia;
 
         return (
             <>
-                <main aria-hidden={isContactModalOpen}>
+                <main aria-hidden={isContactModalOpen || isLightboxModalOpen}>
                     <PhotographHeader
                         key={photographer.id}
                         name={photographer.name}
@@ -35,13 +70,21 @@ export default function PhotographPage({ photographer, photographerAllMedia }) {
                         portrait={photographer.portrait}
                         onOpen={() => setIsContactModalOpen(true)}
                     />
+                    <SortingOptions 
+                        selectedOption={sortBy}
+                        onChange={setSortBy}
+                    />
                     <ul className={styles.mediaGrid}>
-                        {photographerAllMedia.map((media) => (
+                        {sortedMedias.map((media, index) => (
                             <PhotographMedia
                                 key={media.id}
+                                name={photographer.name}
                                 title={media.title}
                                 media={media}
                                 likes={media.likes}
+                                onClick={() => {
+                                    setIndexMedia(index);
+                                    setIsLightboxModalOpen(true)}}
                             />
                         ))}
                     </ul>
@@ -50,6 +93,12 @@ export default function PhotographPage({ photographer, photographerAllMedia }) {
                     name={photographer.name}
                     isOpen={isContactModalOpen}
                     onClose={() => setIsContactModalOpen(false)}
+                />
+                <LightBoxModal
+                    medias={photographerAllMedia}
+                    index={indexMedia}
+                    isOpen={isLightboxModalOpen}
+                    onClose={() => setIsLightboxModalOpen(false)}
                 />
             </>
         )

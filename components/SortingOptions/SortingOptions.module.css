@@ -1,0 +1,19 @@
+.sortingContainer {
+    margin-top: 24px;
+}
+.sortingContainer label {
+    color: black;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.sortingContainer select {
+    margin-left: 20px;
+    padding: 10px 10px;
+    font-family: var(--font-dm-sans);
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+    border-radius: 4px;
+    background-color: #901C1C;
+}
