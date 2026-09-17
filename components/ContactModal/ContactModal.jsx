@@ -29,8 +29,8 @@ export default function ContactModal({ name, isOpen, onClose }) {
         return null
 
     return(
-            <div className={styles.modalOverlay}>
-                <div className={styles.modal} aria-hidden="false" role="dialog" aria-labelledby="modalTitle">
+            <div className={styles.modalOverlay} onClick={onClose}>
+                <div className={styles.modal} aria-hidden="false" role="dialog" aria-labelledby="modalTitle" onClick={(e) => e.stopPropagation()}>
                     <div className={styles.modalHeader}>
                         <h1 id="modalTitle">Contactez-moi<br />{name}</h1>
                         <button onClick={onClose} className={styles.closeCross}>
