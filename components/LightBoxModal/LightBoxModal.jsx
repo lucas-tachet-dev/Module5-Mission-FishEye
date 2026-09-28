@@ -88,6 +88,7 @@ export default function LightBoxModal({ medias, isOpen, onClose, index }){
                                 height={800}
                                 width={1100}
                                 className={styles.mediaContent}
+                                preload
                             />
                         ) : (
                             <video
