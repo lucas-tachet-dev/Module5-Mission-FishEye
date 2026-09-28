@@ -7,6 +7,7 @@ import SortingOptions from "../SortingOptions/SortingOptions"
 import PhotographMedia from "../PhotographMedia/PhotographMedia"
 import ContactModal from "../ContactModal/ContactModal"
 import LightBoxModal from "../LightBoxModal/LightBoxModal"
+import PhotographCTA from "../PhotographCTA/PhotographCTA"
 
 export default function PhotographPage({ photographer, photographerAllMedia }) {
         // Gestion d'ouverture/fermeture de la modale de contact
@@ -58,6 +59,16 @@ export default function PhotographPage({ photographer, photographerAllMedia }) {
             }
         }) : photographerAllMedia;
 
+        // Récup des likes global du photographe
+        const likesList = photographerAllMedia.map(media => media.likes);
+        const initialTotalLikes = likesList.reduce((total, likes) => total + likes, 0);
+
+        const [totalLikes, setTotalLikes] = useState(initialTotalLikes);
+
+        const likeChange = (change) => {
+            setTotalLikes((prevTotal) => prevTotal + change)
+        }
+
         return (
             <>
                 <main aria-hidden={isContactModalOpen || isLightboxModalOpen}>
@@ -79,15 +90,18 @@ export default function PhotographPage({ photographer, photographerAllMedia }) {
                             <PhotographMedia
                                 key={media.id}
                                 name={photographer.name}
-                                title={media.title}
                                 media={media}
-                                likes={media.likes}
+                                onLikeChange={likeChange}
                                 onClick={() => {
                                     setIndexMedia(index);
                                     setIsLightboxModalOpen(true)}}
                             />
                         ))}
                     </ul>
+                    <PhotographCTA 
+                        likes={totalLikes}
+                        price={photographer.price}
+                    />
                 </main>
                 <ContactModal 
                     name={photographer.name}

@@ -1,0 +1,28 @@
+.container {
+    position: fixed;
+    right: 60px;
+    bottom: -6px;
+
+    padding: 20px 30px;
+
+    background-color: #DB8876;
+    border-radius: 5px;
+
+
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+
+    & h4 {
+        font-size: 24px;
+        color: black;
+        font-weight: 400;
+    }
+}
+
+.likes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+}
