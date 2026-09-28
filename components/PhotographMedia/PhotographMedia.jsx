@@ -1,14 +1,25 @@
 import styles from "./PhotographMedia.module.css"
 import Image from "next/image"
+import LikeButton from "../LikeButton/LikeButton"
 
-export default function PhotographMedia({ name, title, media, likes, onClick }) {
+export default function PhotographMedia({ name, media, onLikeChange, onClick }) {
+    const onKeyDown = (e) => {
+        if (e.key === "Enter" || e.key === " "){
+            onClick();
+        }
+    }
 
     return(
-        <li className={styles.mediaCard} onClick={onClick}>
+        <li className={styles.mediaCard}
+            onClick={onClick} 
+            onKeyDown={onKeyDown}
+            tabIndex={0}
+            role="button"
+            aria-label={`ouvrir le média ${media.title}`}>
             {media.image ? (
                 <Image 
                     src={`/${media.image}`}
-                    alt={`${title} de ${name}`}
+                    alt={`${media.title} de ${name}`}
                     height={400}
                     width={400}
                     loading="eager"
@@ -18,18 +29,15 @@ export default function PhotographMedia({ name, title, media, likes, onClick }) 
                 <video
                     src={`/${media.video}`}
                     className={styles.mediaPhoto}
-                    aria-label={title}
+                    aria-label={media.title}
                 />
             )}
             <div className={styles.mediaInfo}>
-                <h3>{title}</h3>
+                <h3>{media.title}</h3>
                 <div className={styles.likeSection}>
-                    <p>{likes}</p>
-                    <Image 
-                        src={`/images/like.png`}
-                        alt="likes"
-                        width={21}
-                        height={24}
+                    <LikeButton
+                        media={media}
+                        onLikeChange={onLikeChange}
                     />
                 </div>
             </div>
