@@ -32,9 +32,9 @@ export async function generateMetadata({ params }) {
     }
 }
 
-// export async function generateStaticParams(){
-//     const allPhotographers = await getAllPhotographers();
-//     return allPhotographers.map((photographer) => ({
-//         id: photographer.id
-//     }))
-// }
+export async function generateStaticParams(){
+    const allPhotographers = await getAllPhotographers();
+    return allPhotographers.map((photographer) => ({
+        id: photographer.id.toString(),
+    }))
+}
