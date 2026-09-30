@@ -17,7 +17,7 @@ export default function PhotographHeader({ name, city, country, tagline, portrai
                     <h2>{city}, {country}</h2>
                     <p>{tagline}</p>
                 </div>
-                <button className={styles.contactButton} onClick={onOpen}>Contactez-moi</button>
+                <button className={styles.contactButton} onClick={onOpen} aria-label="Contact Me">Contactez-moi</button>
                 <Image
                     src={`/${portrait}`}
                     alt={`${name}`}
