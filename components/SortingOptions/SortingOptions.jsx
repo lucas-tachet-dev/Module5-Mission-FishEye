@@ -5,7 +5,7 @@ import styles from "./SortingOptions.module.css"
 export default function SortingOptions({ selectedOption, onChange }) {
     return (
         <div className={styles.sortingContainer}>
-            <label htmlFor="dropdownMenu">Trier par</label>
+            <label htmlFor="dropdownMenu" aria-label="Order by">Trier par</label>
             <select 
                 id="dropdownMenu"
                 value={selectedOption} 
