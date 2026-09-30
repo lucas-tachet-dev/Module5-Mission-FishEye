@@ -2,6 +2,7 @@
 /node_modules
 /.pnp
 .pnp.js
+node_modules
 
 # Build et Cache Next.js
 /.next/
