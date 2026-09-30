@@ -5,7 +5,7 @@
 node_modules
 
 # Build et Cache Next.js
-/.next/
+.next/
 /out/
 /build
 .DS_Store
