@@ -109,7 +109,7 @@ export default function PhotographPage({ photographer, photographerAllMedia }) {
                     onClose={() => setIsContactModalOpen(false)}
                 />
                 <LightBoxModal
-                    medias={photographerAllMedia}
+                    medias={sortedMedias}
                     index={indexMedia}
                     isOpen={isLightboxModalOpen}
                     onClose={() => setIsLightboxModalOpen(false)}

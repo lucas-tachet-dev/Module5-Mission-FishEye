@@ -16,9 +16,7 @@ export default function PhotographMedia({ name, media, onLikeChange, onClick }) 
     }
 
     return(
-        <li className={styles.mediaCard}
-            onClick={onClick} 
-            aria-label={`ouvrir le média ${media.title}`}>
+        <li className={styles.mediaCard}>
             {media.image ? (
                 <Image 
                     src={`/${media.image}`}
@@ -31,15 +29,17 @@ export default function PhotographMedia({ name, media, onLikeChange, onClick }) 
                     width={400}
                     loading="eager"
                     className={styles.mediaPhoto}
+                    onClick={onClick}
                 />
             ) : (
                 <video
                     src={`/${media.video}`}
                     className={styles.mediaPhoto}
-                    aria-label={`${media.title} de ${name}`}
-                    onKeyDown={onKeyDownMedia}
                     tabIndex={0}
                     role="button"
+                    onKeyDown={onKeyDownMedia}
+                    onClick={onClick}
+                    aria-label={`ouvrir le média ${media.title}`}
                 />
             )}
             <div className={styles.mediaInfo}>
