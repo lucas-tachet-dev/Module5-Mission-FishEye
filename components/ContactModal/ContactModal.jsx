@@ -7,6 +7,9 @@ import { useEffect } from "react"
 export default function ContactModal({ name, isOpen, onClose }) {
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log('Prénom : ' + e.target.firstName.value + ", Nom : " + e.target.lastName.value);
+        console.log('Email : ' + e.target.Email.value);
+        console.log('Message : ' + e.target.yourMessage.value);
     }
     
     // Accessibilité fermer la modale avec esc
