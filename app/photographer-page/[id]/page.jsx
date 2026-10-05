@@ -1,11 +1,16 @@
 import { getPhotographer, getAllPhotographers ,getAllMediasForPhotographer } from "../../../lib/prisma-db";
 import PhotographPage from "../../../components/PhotographPage/PhotographPage";
+import { notFound } from "next/navigation";
 
 export default async function PhotographerPage({ params }) {
     const { id } = await params;
     const photographerId = parseInt(id, 10)
     const photographer = await getPhotographer(photographerId);
     const photographerAllMedia = await getAllMediasForPhotographer(photographerId);
+
+    if(!photographer) {
+        notFound()
+    }
 
     return(
         <PhotographPage
